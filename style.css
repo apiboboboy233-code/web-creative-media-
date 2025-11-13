@@ -1,0 +1,606 @@
+/* ==================== IMPORT FONT & VARIABLE ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --blue-dark: #0d47a1;
+    --blue-light: #2196f3;
+    --blue-neon: #00e5ff; /* Aksen Neon Cyan */
+    --white: #ffffff;
+    --grey-soft: #f4f7fb;
+    --text-dark: #333;
+    --text-light: #f1f1f1;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ==================== RESET & DASAR ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--grey-soft);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--blue-dark);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--blue-light);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--blue-dark);
+}
+
+/* ==================== NAVIGASI (HEADER) ==================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85); /* Efek Kaca */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+.nav-logo img {
+    height: 40px;
+    margin-right: 10px;
+    animation: fadeIn 1s ease;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: var(--blue-dark);
+    padding: 0.5rem;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--blue-light);
+    border-bottom-color: var(--blue-light);
+}
+
+.nav-toggle {
+    display: none; /* Untuk mobile nanti */
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ==================== SISTEM HALAMAN (PAGE) ==================== */
+.page {
+    display: none; /* Semua halaman disembunyikan */
+    padding: 3rem 0;
+    min-height: calc(100vh - 70px - 100px); /* tinggi viewport - header - footer */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.page.active {
+    display: block; /* Halaman aktif ditampilkan */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-section {
+    padding-top: 2rem;
+}
+
+/* ==================== TOMBOL (BUTTONS) ==================== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--blue-light);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--blue-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 71, 161, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--white);
+    color: var(--blue-light);
+    border: 1px solid var(--blue-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--grey-soft);
+    color: var(--blue-dark);
+    border-color: var(--blue-dark);
+}
+
+
+/* ==================== 1. BERANDA (HOME) ==================== */
+#home .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 500px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
+    padding: 2rem;
+    animation: smoothGradient 10s ease infinite alternate;
+}
+
+@keyframes smoothGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.hero-logo {
+    width: 120px;
+    margin-bottom: 1rem;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: var(--white);
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.hero-buttons .btn {
+    margin: 0 0.5rem;
+}
+
+#home h3 {
+    color: var(--blue-light);
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* ==================== 2. PROFIL ANGGOTA ==================== */
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.profile-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--blue-light);
+    margin-bottom: 1rem;
+}
+
+.profile-card h3 {
+    margin-bottom: 0.25rem;
+}
+
+.profile-class {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.profile-role {
+    font-weight: 600;
+    color: var(--blue-dark);
+}
+
+.profile-skill {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* ==================== 3. ABSENSI ONLINE ==================== */
+.card-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 2rem;
+}
+
+#absensi-nama {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.absensi-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.absensi-buttons .btn {
+    flex: 1;
+    border-radius: 8px;
+    color: var(--white);
+}
+
+.btn-hadir { background-color: #4CAF50; }
+.btn-izin { background-color: #FFC107; }
+.btn-alfa { background-color: #F44336; }
+
+.table-container {
+    overflow-x: auto;
+    background: linear-gradient(145deg, rgba(230, 245, 255, 0.4), rgba(200, 230, 255, 0.6)); /* Biru transparan */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1); /* Shadow blur lembut */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1rem;
+}
+
+.absensi-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.absensi-table th, .absensi-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.absensi-table th {
+    color: var(--blue-dark);
+}
+
+/* ==================== 4. KEGIATAN & BERITA ==================== */
+.kegiatan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.kegiatan-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.kegiatan-card:hover {
+    transform: translateY(-5px);
+}
+
+.kegiatan-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.kegiatan-content {
+    padding: 1.5rem;
+}
+
+.kegiatan-kategori {
+    display: inline-block;
+    background-color: var(--blue-light);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.kegiatan-content h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== 5. GALERI KARYA ==================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(13, 71, 161, 0.9), transparent);
+    color: var(--white);
+    padding: 3rem 1.5rem 1.5rem;
+    opacity: 0;
+    transform: translateY(20%);
+    transition: all 0.4s ease;
+}
+
+.gallery-overlay h3 {
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+.gallery-overlay p {
+    font-size: 0.9rem;
+    color: var(--blue-neon); /* Aksen Neon Cyan */
+    font-weight: 600;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05); /* Efek zoom halus */
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1; /* Nama pembuat muncul */
+    transform: translateY(0);
+}
+
+/* ==================== TAMBAHAN: LIGHTBOX STYLE ==================== */
+/* (Ini adalah tambahan yang kita bicarakan) */
+#lightbox-container {
+    display: none; /* Sembunyi by default */
+    position: fixed; 
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Latar belakang gelap */
+    justify-content: center;
+    align-items: center;
+}
+
+#lightbox-container.active {
+    display: flex; /* Tampilkan saat aktif */
+}
+
+.lightbox-image {
+    max-width: 90vw;  /* Maksimal 90% lebar layar */
+    max-height: 90vh; /* Maksimal 90% tinggi layar */
+    object-fit: contain;
+    animation: fadeIn 0.3s ease; /* Animasi muncul */
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    font-size: 3rem;
+    color: var(--white);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.1);
+}
+
+/* ==================== 6. TENTANG SEKOLAH ==================== */
+#tentang {
+    padding: 0; /* Hapus padding default */
+}
+.tentang-sekolah {
+    background-image: url('images/bg-sekolah.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.tentang-overlay {
+    background: rgba(13, 71, 161, 0.85); /* Overlay biru transparan */
+    color: var(--white);
+    padding: 4rem 0;
+}
+
+.tentang-overlay h2, .tentang-overlay h3 {
+    color: var(--white);
+}
+
+.tentang-overlay ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* ==================== 7. KONTAK & SARAN ==================== */
+.kontak-form {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.kontak-form .btn {
+    width: 100%;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background-color: var(--blue-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.footer p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== RESPONSIVE (UNTUK HP) ==================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%; /* Sembunyi di kiri */
+        background: var(--white);
+        flex-direction: column;
+        width: 100%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        gap: 1rem;
+        transition: left 0.4s ease;
+    }
+
+    .nav-menu.active {
+        left: 0; /* Muncul */
+    }
+
+    .nav-toggle {
+        display: block;
+        color: var(--blue-dark);
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

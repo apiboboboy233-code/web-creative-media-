@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Creative Media</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+
+    <style>
+        /* CSS KHUSUS UNTUK LOGIN */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--grey-soft);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-strong);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+            color: var(--blue-dark);
+        }
+
+        #login-error-message {
+            color: #F44336; /* Merah */
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: none; /* Awalnya disembunyikan */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Admin Creative Media</h2>
+        <p id="login-error-message">Email atau Password salah!</p>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="admin-email">Email Admin</label>
+                <input type="email" id="admin-email" placeholder="Masukkan email admin" required>
+            </div>
+            <div class="form-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" placeholder="Masukkan password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    
+    <script src="login.js"></script>
+
+</body>
+</html>

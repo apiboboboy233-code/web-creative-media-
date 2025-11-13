@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Media - SMK PELITA CIAMPEA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#home" class="nav-logo">
+                <img src="images/logo-ekskul.png" alt="Logo Creative Media">
+                <span>Creative Media</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Beranda</a>
+                <a href="#profil" class="nav-link">Profil Anggota</a>
+                <a href="#absensi" class="nav-link">Absensi</a>
+                <a href="#kegiatan" class="nav-link">Kegiatan</a>
+                <a href="#galeri" class="nav-link">Galeri Karya</a>
+                <a href="#tentang" class="nav-link">Tentang Sekolah</a>
+                <a href="#kontak" class="nav-link">Kontak</a>
+            </nav>
+            <div class="nav-toggle" id="nav-toggle">&#9776;</div>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="page active" id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <img src="images/logo-ekskul.png" alt="Logo Ekskul" class="hero-logo">
+                    <h1>Creative Media</h1>
+                    <p>"Berkreasi, Berinovasi, dan Menginspirasi Melalui Media"</p>
+                   <div class="hero-buttons">
+                        <a href="#galeri" class="btn btn-primary nav-link">Lihat Karya</a>
+                        <a href="#absensi" class="btn btn-secondary nav-link">Absensi Anggota</a>
+                        <a href="#kontak" class="btn btn-secondary nav-link">Daftar Anggota Baru</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container content-section">
+                <h2>Selamat Datang!</h2>
+                <p>Kami adalah komunitas siswa di SMK Pelita Ciampea yang berfokus pada dunia desain, fotografi, dan video editing. Melalui wadah ini, kami berbagi karya, mengelola kegiatan, serta menciptakan konten yang menginspirasi seluruh warga sekolah.</p>
+                <h3>"Dari Pelita, Kami Menyala Lewat Media."</h3>
+            </div>
+        </section>
+
+        <section class="page" id="profil">
+            <div class="container">
+                <h2>Profil Anggota</h2>
+                <p>Data lengkap semua anggota aktif dan alumni Creative Media.</p>
+                
+                <div class="profile-grid" id="profile-grid-container">
+                    <p id="profil-loading">Memuat daftar anggota...</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="absensi">
+            <div class="container">
+                <h2>Absensi Online</h2>
+                <p>Sistem absensi dan rekapitulasi kehadiran anggota.</p>
+                
+                <div class="absensi-form card-glass">
+                    <h3>Catat Kehadiran Hari Ini</h3>
+                    <select id="absensi-nama">
+                        <option value="">-- Memuat nama anggota... --</option>
+                    </select>
+                    <div class="absensi-buttons">
+                        <button class="btn btn-hadir" data-status="Hadir">Hadir</button>
+                        <button class="btn btn-izin" data-status="Izin">Izin</button>
+                        <button class="btn btn-alfa" data-status="Alfa">Alfa</button>
+                    </div>
+                </div>
+
+                <h3>Rekap Kehadiran</h3>
+                <div class="table-container">
+                    <table class="absensi-table">
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Tanggal & Jam</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="absensi-rekap-body">
+                            <tr>
+                                <td colspan="3" id="rekap-loading" style="text-align: center;">Memuat rekap...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="kegiatan">
+            <div class="container">
+                <h2>Kegiatan & Berita</h2>
+                <p>Update terbaru dari semua aktivitas Creative Media.</p>
+                
+                <div class="kegiatan-grid" id="kegiatan-grid-container">
+                    
+                    <p id="kegiatan-loading">Memuat kegiatan terbaru...</p>
+                    
+                    </div>
+            </div>
+        </section>
+
+
+        <section class="page" id="galeri">
+            <div class="container">
+                <h2>Galeri Karya 📸🎥</h2>
+                <p>Kumpulan hasil karya terbaik dari anggota kami.</p>
+                
+                <div class="gallery-grid" id="gallery-grid-container">
+                    <p id="gallery-loading">Memuat karya terbaru...</p> 
+                </div>
+
+            </div>
+        </section>
+        
+        <section class="page" id="tentang">
+            <div class="tentang-sekolah">
+                <div class="tentang-overlay">
+                    <div class="container">
+                        <h2>Tentang SMK PELITA CIAMPEA</h2>
+                        <h3>Visi & Misi</h3>
+                        <p>Menjadi lembaga pendidikan kejuruan yang unggul, menghasilkan lulusan yang kompeten, berakhlak mulia, dan mampu bersaing di era global.</p>
+                        <h3>Program Keahlian</h3>
+                        <ul>
+                            <li>Rekayasa Perangkat Lunak</li>
+                            <li>Desain Komunikasi Visual</li>
+                            <li>Teknik Komputer dan Jaringan</li>
+                            <li>Manajemen Perkantoran</li>
+                        </ul>
+                        <a href="https://smkpelitaciampeabogor.sch.id/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            Website Utama Sekolah
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="kontak">
+            <div class="container">
+                <h2>Kontak & Saran</h2>
+                <p>Punya ide, pertanyaan, atau ingin join? Hubungi kami!</p>
+                
+                <form class="kontak-form" id="kontak-form">
+                    
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" id="nama" name="Nama" placeholder="Masukkan nama lengkapmu" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kelas-jurusan">Kelas / Jurusan</label>
+                        <input type="text" id="kelas-jurusan" name="Kelas_Jurusan" placeholder="contoh: X-Desain Grafis">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telepon">Nomor Telepon (WhatsApp)</label>
+                        <input type="tel" id="telepon" name="Telepon_WA" placeholder="contoh: 081234567890" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pesan">Pesan</label>
+                        <textarea id="pesan" name="Pesan" rows="5" placeholder="Tulis pesan atau saranmu di sini..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" id="kontak-submit-button" class="btn btn-primary">Kirim Pesan</button>
+
+                    <p id="kontak-status-message" style="margin-top: 1rem; font-weight: 600; text-align: center;"></p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <img src="images/logo-sekolah.png" alt="Logo SMK Pelita Ciampea" class="footer-logo">
+            <p>&copy; 2025 Creative Media - SMK PELITA CIAMPEA. All rights reserved.</p>
+            <p>Didesain dan dikelola oleh Anggota Creative Media</p>
+        </div>
+    </footer>
+
+    <div id="lightbox-container">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Gambar Karya Diperbesar" class="lightbox-image">
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script> 
+    <script src="script.js"></script>
+</body>
+</html>

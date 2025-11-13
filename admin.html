@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Creative Media</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+
+    <style>
+        /* CSS Khusus untuk halaman admin */
+        body {
+            background-color: var(--grey-soft);
+        }
+        .admin-header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-header h2 {
+            color: var(--blue-dark);
+            margin: 0;
+        }
+        .admin-info {
+            font-size: 0.9rem;
+            color: var(--grey-dark);
+        }
+        .admin-info span {
+            font-weight: 600;
+            color: var(--blue-dark);
+        }
+        .admin-container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-strong);
+        }
+        
+        /* CSS untuk memisahkan section */
+        .admin-section {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--grey-soft);
+            padding-bottom: 2rem;
+        }
+        .admin-section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Style untuk form */
+        .admin-form {
+            padding: 0;
+            box-shadow: none;
+        }
+        .admin-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .admin-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .admin-form input[type="text"],
+        .admin-form input[type="file"],
+        .admin-form textarea,
+        .admin-form select {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .admin-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Status */
+        .upload-status {
+            margin-top: 1rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* CSS untuk Daftar List Admin */
+        .admin-list-container {
+            margin-top: 2rem;
+        }
+        .admin-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .admin-list-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px; /* Dibuat kotak agar beda dgn profil */
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        .admin-list-info {
+            flex: 1;
+        }
+        .admin-list-info h5 {
+            margin: 0;
+            color: var(--blue-dark);
+        }
+        .admin-list-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .btn-hapus {
+            background-color: #F44336;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Tombol Reset Absensi */
+        .btn-reset {
+            background-color: #f0ad4e; /* Warna warning (orange) */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+        }
+        .btn-reset:hover {
+            background-color: #ec971f;
+        }
+
+        /* (BARU) CSS untuk Daftar Kontak Masuk */
+        .kontak-admin-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: #fdfdfd;
+        }
+        .kontak-admin-item .kontak-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .kontak-admin-item .kontak-info {
+            flex: 1;
+        }
+        .kontak-admin-item .kontak-info h5 {
+            margin: 0 0 0.25rem 0;
+            color: var(--blue-dark);
+        }
+        .kontak-admin-item .kontak-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .kontak-admin-item .kontak-tanggal {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: right;
+            margin-left: 1rem;
+        }
+        .kontak-admin-item .kontak-pesan {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #222;
+            white-space: pre-wrap; /* Agar baris baru (enter) tetap terlihat */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h2>Admin Dashboard</h2>
+        <div class="admin-info">
+            Login sebagai: <span id="admin-email-display">memuat...</span>
+            <button id="logout-button" class="btn btn-secondary" style="margin-left: 1rem;">Logout</button>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <h3>Selamat Datang, Admin!</h3>
+        <p>Pilih manajemen yang ingin anda lakukan di bawah ini.</p>
+        
+        <section class="admin-section" id="portfolio-management-section">
+            <h4>Manajemen Galeri Karya</h4>
+            
+            <form id="upload-form" class="admin-form">
+                <div class="form-group">
+                    <label for="karya-judul">Judul Karya</label>
+                    <input type="text" id="karya-judul" placeholder="Cth: Poster Hari Pahlawan" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="karya-pembuat">Dibuat oleh</label>
+                    <input type="text" id="karya-pembuat" placeholder="Cth: Anggota DKV" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="karya-file">File Gambar</label>
+                    <input type="file" id="karya-file" accept="image/*" required>
+                </div>
+
+                <button type="submit" id="upload-button" class="btn btn-primary">Upload Karya</button>
+                <p id="upload-status" class="upload-status">Status: Sedang mengupload...</p>
+            </form>
+
+            <hr style="margin: 2rem 0;">
+            <h5>Daftar Karya Saat Ini</h5>
+            <div id="gallery-admin-list-container" class="admin-list-container">
+                <p id="gallery-list-loading">Memuat daftar karya...</p>
+            </div>
+
+        </section>
+
+        <section class="admin-section" id="profile-management-section">
+            <h4>Manajemen Profil Anggota</h4>
+            
+            <form id="profil-upload-form" class="admin-form">
+                <div class="form-group">
+                    <label for="profil-nama">Nama Lengkap</label>
+                    <input type="text" id="profil-nama" placeholder="Cth: M. Budi Sanjaya" required>
+                </div>
+                <div class="form-group">
+                    <label for="profil-kelas">Kelas & Jurusan</label>
+                    <input type="text" id="profil-kelas" placeholder="Cth:XII TJKT 1" required>
+                </div>
+                <div class="form-group">
+                    <label for="profil-jabatan">Jabatan / peran</label>
+                    <input type="text" id="profil-jabatan" placeholder="Cth: Ketua / Editing" required>
+                </div>
+                 <div class="form-group">
+                    <label for="profil-keahlian">Divisi</label>
+                    <input type="text" id="profil-keahlian" placeholder="Cth: Editing, dokumentasi" required>
+                </div>
+                <div class="form-group">
+                    <label for="profil-file">Foto Profil (disarankan 1:1)</label>
+                    <input type="file" id="profil-file" accept="image/*" required>
+                </div>
+                <button type="submit" id="profil-upload-button" class="btn btn-primary">Tambah Anggota</button>
+                <p id="profil-upload-status" class="upload-status">Status: Menunggu...</p>
+            </form>
+
+            <hr style="margin: 2rem 0;">
+            <h5>Daftar Anggota Saat Ini</h5>
+            <div id="profil-admin-list-container" class="admin-list-container">
+                <p id="profil-list-loading">Memuat daftar anggota...</p>
+            </div>
+
+        </section>
+
+        <section class="admin-section" id="kegiatan-management-section">
+            <h4>Manajemen Kegiatan & Berita</h4>
+            
+            <form id="kegiatan-upload-form" class="admin-form">
+                <div class="form-group">
+                    <label for="kegiatan-judul">Judul Kegiatan</label>
+                    <input type="text" id="kegiatan-judul" placeholder="Cth: Maulid Nabi" required>
+                </div>
+                <div class="form-group">
+                    <label for="kegiatan-kategori">Kategori</label>
+                    <input type="text" id="kegiatan-kategori" placeholder="Cth: Perjalanan islam" required>
+                </div>
+                <div class="form-group">
+                    <label for="kegiatan-deskripsi">Deskripsi Singkat</label>
+                    <textarea id="kegiatan-deskripsi" rows="4" placeholder="Tulis deskripsi singkat kegiatan di sini..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="kegiatan-file">Gambar Kegiatan</label>
+                    <input type="file" id="kegiatan-file" accept="image/*" required>
+                </div>
+                <button type="submit" id="kegiatan-upload-button" class="btn btn-primary">Posting Kegiatan</button>
+                <p id="kegiatan-upload-status" class="upload-status">Status: Menunggu...</p>
+            </form>
+
+            <hr style="margin: 2rem 0;">
+            <h5>Daftar Kegiatan Saat Ini</h5>
+            <div id="kegiatan-admin-list-container" class="admin-list-container">
+                <p id="kegiatan-list-loading">Memuat daftar kegiatan...</p>
+            </div>
+        </section>
+
+        <section class="admin-section" id="absensi-management-section">
+            <h4>Manajemen Absensi</h4>
+            <p>Fitur ini digunakan untuk mereset data rekap absensi harian.</p>
+            <p>
+                Tekan tombol di bawah ini untuk <strong>menghapus semua</strong> data absensi yang ada di database.
+                Ini akan mengosongkan tabel rekap di halaman depan, siap untuk pertemuan berikutnya.
+            </p>
+            <br>
+            <button id="reset-absensi-button" class="btn btn-reset">RESET REKAP ABSENSI</button>
+            <p id="reset-absensi-status" class="upload-status" style="color: #F44336;">Status: Menunggu...</p>
+        </section>
+
+        <section class="admin-section" id="kontak-management-section">
+            <h4>Manajemen Kontak Masuk</h4>
+            <p>Daftar pesan, saran, yang dikirim oleh pengunjung melalui halaman kontak.</p>
+            
+            <div id="kontak-admin-list-container" class="admin-list-container" style="margin-top: 1rem;">
+                <p id="kontak-list-loading">Memuat pesan masuk...</p>
+                </div>
+        </section>
+        </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script> 
+    
+    <script src="admin.js"></script>
+
+</body>
+</html>
